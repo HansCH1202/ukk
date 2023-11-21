@@ -4,23 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Book;
+use App\Models\User;
 
 class SearchController extends Controller
 {
     public function index(Request $request)
     {
-        $books = Book::query();
+        $query = $request->input('search');
+        $searchType = $request->input('search_type', 'book');
 
-        // Filter berdasarkan judul buku
-        if ($request->has('search')) {
-            $searchKeywords = explode(' ', $request->input('search'));
-            foreach ($searchKeywords as $keyword) {
-                $books->where('title', 'like', '%' . $keyword . '%');
-            }
+        if ($searchType === 'book') {
+            // Cari buku
+            $results = Book::where('title', 'like', '%' . $query . '%')->get();
+            return view('pages.search.index', compact('results'));
         }
 
-        $books = $books->get();
-
-        return view('pages.search.index_book', compact('books'));
+        if ($searchType === 'user') {
+            // Cari pengguna
+            $users = User::where('name', 'like', '%' . $query . '%')->get();
+            return view('pages.search.index', compact('users'));
+        }
     }
 }

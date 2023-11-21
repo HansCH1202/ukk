@@ -3,7 +3,7 @@
 @section('title', 'Edit Buku')
 
 @section('content')
-    <form action="{{route('buku.update', $book->id)}}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('buku.update', $book->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -12,12 +12,12 @@
             <input type="text" class="form-control @error('title')
                 is-invalid
             @enderror"
-                name="title" value="{{ $book->title}}">
-                @error('title')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+                name="title" value="{{ $book->title }}">
+            @error('title')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
 
         <div class="mb-3">
@@ -25,12 +25,12 @@
             <input type="text" class="form-control @error('author')
                 is-invalid
             @enderror"
-                name="author" value="{{ $book->author}}">
-                @error('author')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+                name="author" value="{{ $book->author }}">
+            @error('author')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
 
         <div class="mb-3">
@@ -38,12 +38,12 @@
             <input type="text" class="form-control @error('publisher')
                 is-invalid
             @enderror"
-                name="publisher" value="{{ $book->publisher}}">
-                @error('publisher')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+                name="publisher" value="{{ $book->publisher }}">
+            @error('publisher')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
 
         <div class="mb-3">
@@ -51,12 +51,12 @@
             <input type="text" class="form-control @error('year')
                 is-invalid
             @enderror"
-                name="year" value="{{ $book->year}}">
-                @error('year')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+                name="year" value="{{ $book->year }}">
+            @error('year')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
 
         <div class="mb-3">
@@ -64,12 +64,12 @@
             <input type="text" class="form-control @error('isbn')
                 is-invalid
             @enderror"
-                name="isbn" value="{{ $book->isbn}}">
-                @error('isbn')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+                name="isbn" value="{{ $book->isbn }}">
+            @error('isbn')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
 
         <div class="mb-3">
@@ -77,7 +77,7 @@
             <input type="file" class="form-control @error('cover')
                 is-invalid
             @enderror"
-                name="cover" value="{{ $book->cover}}">
+                name="cover" value="{{ $book->cover }}">
             @error('cover')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -87,20 +87,21 @@
 
         <div class="mb-3">
             <label class="form-label">Deskripsi</label>
-            <input type="text" class="form-control @error('description')
+            <input type="text"
+                class="form-control @error('description')
                 is-invalid
             @enderror"
-                name="description" value="{{ $book->description}}">
-                @error('description')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
+                name="description" value="{{ $book->description }}">
+            @error('description')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+            @enderror
         </div>
 
         <div class="mb-3">
             <label class="form-label">Kategori</label>
-            <p>Kategori Lama: {{ $book->category}}</p>
+            <p>Kategori Lama: {{ $book->category }}</p>
             <select class="form-select @error('category')
                 is-invalid
             @enderror" name="category">
@@ -113,6 +114,6 @@
                 <option value="Lainnya">Lainnya</option>,
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Edit Buku</button>
+        <button type="submit" class="btn btn-primary mb-5">Edit Buku</button>
     </form>
 @endsection

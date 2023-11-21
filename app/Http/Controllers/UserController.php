@@ -42,7 +42,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
         $data = $request->all();
+        $data['password'] = Hash::make($request->input('password'));
 
         User::create($data);
 
@@ -78,13 +85,15 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $id,
+            'old_password' => 'nullable|string|min:8',
             'password' => 'nullable|string|min:8|confirmed',
         ]);
 
         // Validasi password lama di sisi server
-        if ($request->filled('password') && !Hash::check($request->input('password'), $user->password)) {
+        if ($request->filled('old_password') && !Hash::check($request->input('old_password'), $user->password)) {
             return redirect()->back()->with('error', 'Password Lama Tidak Sesuai.');
         }
+
 
         $data = $request->all();
 

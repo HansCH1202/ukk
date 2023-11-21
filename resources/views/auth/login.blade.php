@@ -85,11 +85,16 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4">
+                            <div class="row mb-3">
+                                <div class="col-md-6 offset-md-4 d-flex align-items-center">
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Login') }}
                                     </button>
+
+                                    <!-- Tautan untuk pindah ke halaman pendaftaran -->
+                                    <p class="mt-2 ml-2 ml-auto align-self-center">
+                                        Belum punya akun? <a href="{{ route('register') }}">Daftar</a>
+                                    </p>
                                 </div>
                             </div>
                         </form>

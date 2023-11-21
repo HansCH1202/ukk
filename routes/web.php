@@ -22,8 +22,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('buku', BookController::class);
     Route::resource('user', UserController::class);
-    Route::get('/search/book', [SearchController::class, 'index'])->name('search.index_book');
-    Route::get('/search/user', [SearchUserController::class, 'index'])->name('search.index_user');
+
+
+    Route::get('/search', [SearchController::class, 'index'])->name('search.index');
 });
 
 Auth::routes();
